@@ -100,11 +100,11 @@ The seed script creates:
 
 ### Backend (.env)
 ```
-DATABASE_URL=postgresql+psycopg2://user:password@localhost:5432/database
+DATABASE_URL= "YOURs"
 JWT_SECRET=your_long_random_secret_key
-JWT_EXPIRE_DAYS=7
-API_PORT=8000
-DEBUG=1
+JWT_EXPIRE_DAYS=YOURs
+API_PORT=YOURs
+DEBUG=YOURs
 ```
 
 ### Frontend (.env)
