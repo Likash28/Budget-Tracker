@@ -28,6 +28,13 @@ body {
   color: var(--text-primary); 
   line-height: 1.6;
   padding-top: 80px; /* Account for fixed navbar */
+  overflow-x: hidden;
+}
+
+/* Override body padding when on auth page */
+body.auth-page {
+  padding-top: 0;
+  overflow: hidden;
 }
 a { color: #61dafb; text-decoration: none; }
 .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
@@ -620,13 +627,21 @@ th,td { padding:.5rem; border-bottom:1px solid var(--border-color); }
 /* Authentication Styles - Ultra Modern Design */
 .auth-container {
   min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-  padding: 2rem;
-  position: relative;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: hidden;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .auth-background {
@@ -697,10 +712,13 @@ th,td { padding:.5rem; border-bottom:1px solid var(--border-color); }
   padding: 3rem;
   width: 100%;
   max-width: 480px;
+  max-height: 90vh;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 2;
   animation: slideUp 0.8s ease-out;
+  overflow-y: auto;
+  margin: 2rem;
 }
 
 @keyframes slideUp {
@@ -1144,12 +1162,16 @@ th,td { padding:.5rem; border-bottom:1px solid var(--border-color); }
 /* Responsive Design */
 @media (max-width: 768px) {
   .auth-container {
-    padding: 1rem;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
   }
   
   .auth-card {
     padding: 2rem;
     max-width: 100%;
+    margin: 1rem;
+    max-height: 95vh;
   }
   
   .auth-header h2 {

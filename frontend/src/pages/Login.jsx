@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api, { setToken } from '../services/api.js'
 
 export default function Login({ onLogin }){
@@ -14,6 +14,14 @@ export default function Login({ onLogin }){
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // Add auth-page class to body when component mounts
+  useEffect(() => {
+    document.body.classList.add('auth-page')
+    return () => {
+      document.body.classList.remove('auth-page')
+    }
+  }, [])
 
   const handleInputChange = (e) => {
     setFormData({
