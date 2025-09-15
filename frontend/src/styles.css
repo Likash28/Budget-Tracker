@@ -36,6 +36,11 @@ body.auth-page {
   padding-top: 0;
   overflow: hidden;
 }
+
+/* Override body padding when navbar is hidden */
+body.no-navbar {
+  padding-top: 0;
+}
 a { color: #61dafb; text-decoration: none; }
 .container { max-width: 1100px; margin: 0 auto; padding: 1rem; }
 /* Ultra Professional Navigation Bar */
