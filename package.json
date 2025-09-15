@@ -1,0 +1,16 @@
+{
+  "name": "budget-tracker",
+  "version": "1.0.0",
+  "description": "Budget Tracker Application with FastAPI backend and React frontend",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm install && npm run dev",
+    "install-frontend": "cd frontend && npm install"
+  },
+  "workspaces": [
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
