@@ -105,21 +105,33 @@ export default function Transactions(){
           </div>
           <div className="summary-cards">
             <div className="summary-card income">
-              <div className="card-icon">💰</div>
+              <div className="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                </svg>
+              </div>
               <div className="card-content">
                 <h3>Total Income</h3>
                 <p className="amount">{formatCurrency(getTotalIncome())}</p>
               </div>
             </div>
             <div className="summary-card expense">
-              <div className="card-icon">💸</div>
+              <div className="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20ZM12 6C9.79 6 8 7.79 8 10S9.79 14 12 14 16 12.21 16 10 14.21 6 12 6ZM12 12C10.9 12 10 11.1 10 10S10.9 8 12 8 14 8.9 14 10 13.1 12 12 12Z" fill="currentColor"/>
+                </svg>
+              </div>
               <div className="card-content">
                 <h3>Total Expenses</h3>
                 <p className="amount">{formatCurrency(getTotalExpense())}</p>
               </div>
             </div>
             <div className="summary-card net">
-              <div className="card-icon">📊</div>
+              <div className="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM7 10H9V16H7V10ZM11 6H13V16H11V6ZM15 8H17V16H15V8Z" fill="currentColor"/>
+                </svg>
+              </div>
               <div className="card-content">
                 <h3>Net Amount</h3>
                 <p className={`amount ${getNetAmount() >= 0 ? 'positive' : 'negative'}`}>
@@ -146,8 +158,8 @@ export default function Transactions(){
                   onChange={e=>setForm({...form, type:e.target.value})}
                   className="form-select"
                 >
-                  <option value="expense">💸 Expense</option>
-                  <option value="income">💰 Income</option>
+                  <option value="expense">Expense</option>
+                  <option value="income">Income</option>
                 </select>
               </div>
               <div className="form-group">
@@ -236,8 +248,8 @@ export default function Transactions(){
                 className="filter-select"
               >
                 <option value="">All Types</option>
-                <option value="income">💰 Income</option>
-                <option value="expense">💸 Expense</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
               </select>
             </div>
           </div>
@@ -264,7 +276,15 @@ export default function Transactions(){
                       </div>
                       <div className="table-cell type">
                         <span className={`type-badge ${transaction.type}`}>
-                          {transaction.type === 'income' ? '💰' : '💸'}
+                          {transaction.type === 'income' ? (
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                            </svg>
+                          ) : (
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20ZM12 6C9.79 6 8 7.79 8 10S9.79 14 12 14 16 12.21 16 10 14.21 6 12 6ZM12 12C10.9 12 10 11.1 10 10S10.9 8 12 8 14 8.9 14 10 13.1 12 12 12Z" fill="currentColor"/>
+                            </svg>
+                          )}
                           {transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}
                         </span>
                       </div>

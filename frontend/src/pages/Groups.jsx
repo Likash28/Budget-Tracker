@@ -116,21 +116,33 @@ export default function Groups(){
           </div>
           <div className="summary-cards">
             <div className="summary-card total-groups">
-              <div className="card-icon">👥</div>
+              <div className="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 4C18.21 4 20 5.79 20 8S18.21 12 16 12 12 10.21 12 8 13.79 4 16 4ZM16 10C17.1 10 18 9.1 18 8S17.1 6 16 6 14 6.9 14 8 14.9 10 16 10ZM8 4C10.21 4 12 5.79 12 8S10.21 12 8 12 4 10.21 4 8 5.79 4 8 4ZM8 10C9.1 10 10 9.1 10 8S9.1 6 8 6 6 6.9 6 8 6.9 10 8 10ZM8 14C5.33 14 0 15.34 0 18V20H2V18C2 16.45 4.42 15 8 15S14 16.45 14 18V20H16V18C16 15.34 10.67 14 8 14ZM16 14C13.33 14 8 15.34 8 18V20H24V18C24 15.34 18.67 14 16 14Z" fill="currentColor"/>
+                </svg>
+              </div>
               <div className="card-content">
                 <h3>Total Groups</h3>
                 <p className="amount">{getTotalGroups()}</p>
               </div>
             </div>
             <div className="summary-card total-members">
-              <div className="card-icon">👤</div>
+              <div className="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="currentColor"/>
+                </svg>
+              </div>
               <div className="card-content">
                 <h3>Total Members</h3>
                 <p className="amount">{getTotalMembers()}</p>
               </div>
             </div>
             <div className="summary-card active-groups">
-              <div className="card-icon">⚡</div>
+              <div className="card-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 3L4 14H12L11 21L20 10H12L13 3Z" fill="currentColor"/>
+                </svg>
+              </div>
               <div className="card-content">
                 <h3>Active Groups</h3>
                 <p className="amount">{groups.filter(g => g.members && g.members.length > 0).length}</p>
@@ -199,7 +211,11 @@ export default function Groups(){
                   <div key={group._id} className="group-card">
                     <div className="group-card-header">
                       <div className="group-info">
-                        <div className="group-icon">👥</div>
+                        <div className="group-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 4C18.21 4 20 5.79 20 8S18.21 12 16 12 12 10.21 12 8 13.79 4 16 4ZM16 10C17.1 10 18 9.1 18 8S17.1 6 16 6 14 6.9 14 8 14.9 10 16 10ZM8 4C10.21 4 12 5.79 12 8S10.21 12 8 12 4 10.21 4 8 5.79 4 8 4ZM8 10C9.1 10 10 9.1 10 8S9.1 6 8 6 6 6.9 6 8 6.9 10 8 10ZM8 14C5.33 14 0 15.34 0 18V20H2V18C2 16.45 4.42 15 8 15S14 16.45 14 18V20H16V18C16 15.34 10.67 14 8 14ZM16 14C13.33 14 8 15.34 8 18V20H24V18C24 15.34 18.67 14 16 14Z" fill="currentColor"/>
+                          </svg>
+                        </div>
                         <div className="group-details">
                           <h3>{group.name}</h3>
                           <p className="member-count">
@@ -212,7 +228,11 @@ export default function Groups(){
                           onClick={()=>viewBalances(group._id)}
                           className="action-btn primary"
                         >
-                          <span className="btn-icon">💰</span>
+                          <span className="btn-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                            </svg>
+                          </span>
                           <span>View Balances</span>
                         </button>
                       </div>
@@ -235,7 +255,11 @@ export default function Groups(){
                           ))
                         ) : (
                           <div className="no-members">
-                            <span className="no-members-icon">👤</span>
+                            <span className="no-members-icon">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="currentColor"/>
+                              </svg>
+                            </span>
                             <span>No members added</span>
                           </div>
                         )}
@@ -246,7 +270,11 @@ export default function Groups(){
               </div>
             ) : (
               <div className="no-groups">
-                <div className="no-groups-icon">👥</div>
+                <div className="no-groups-icon">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 4C18.21 4 20 5.79 20 8S18.21 12 16 12 12 10.21 12 8 13.79 4 16 4ZM16 10C17.1 10 18 9.1 18 8S17.1 6 16 6 14 6.9 14 8 14.9 10 16 10ZM8 4C10.21 4 12 5.79 12 8S10.21 12 8 12 4 10.21 4 8 5.79 4 8 4ZM8 10C9.1 10 10 9.1 10 8S9.1 6 8 6 6 6.9 6 8 6.9 10 8 10ZM8 14C5.33 14 0 15.34 0 18V20H2V18C2 16.45 4.42 15 8 15S14 16.45 14 18V20H16V18C16 15.34 10.67 14 8 14ZM16 14C13.33 14 8 15.34 8 18V20H24V18C24 15.34 18.67 14 16 14Z" fill="currentColor"/>
+                  </svg>
+                </div>
                 <h3>No Groups Found</h3>
                 <p>Create your first group to start sharing expenses</p>
               </div>
@@ -267,7 +295,11 @@ export default function Groups(){
                 <div className="balance-card net-balances">
                   <div className="card-header">
                     <h3>Net Balances</h3>
-                    <span className="card-icon">⚖️</span>
+                    <span className="card-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20ZM12 6C9.79 6 8 7.79 8 10S9.79 14 12 14 16 12.21 16 10 14.21 6 12 6ZM12 12C10.9 12 10 11.1 10 10S10.9 8 12 8 14 8.9 14 10 13.1 12 12 12Z" fill="currentColor"/>
+                      </svg>
+                    </span>
                   </div>
                   <div className="balance-list">
                     {balances.net && balances.net.length > 0 ? (
