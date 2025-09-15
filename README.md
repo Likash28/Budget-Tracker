@@ -1,4 +1,4 @@
-# Budget Tracker FastAPI
+# Budget Tracker
 
 A full-stack budget tracking application with **FastAPI + SQLAlchemy + PostgreSQL** backend and **React + Vite** frontend.
 
