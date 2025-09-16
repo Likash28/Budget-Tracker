@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../services/api.js'
+import { handleAmountChange, isValidAmount, handleAmountPaste } from '../utils/inputValidation.js'
 import { useNavigate } from 'react-router-dom'
 
 export default function Budgets(){
@@ -52,6 +53,12 @@ export default function Budgets(){
   async function save(e){
     e.preventDefault()
     if (!form.limit || !form.category) return
+    
+    // Validate amount before submission
+    if (!isValidAmount(form.limit)) {
+      alert('Please enter a valid budget limit (positive number)')
+      return
+    }
     
     setSubmitting(true)
     try {
@@ -246,10 +253,17 @@ export default function Budgets(){
               <label htmlFor="limit">Budget Limit</label>
               <input 
                 id="limit"
-                type="number" 
+                type="text" 
                 placeholder="Enter budget limit" 
                 value={form.limit} 
-                onChange={e=>setForm({...form, limit:e.target.value})}
+                onChange={e => handleAmountChange(e, setForm, 'limit', form)}
+                onKeyPress={e => {
+                  // Prevent non-numeric characters except decimal point
+                  if (!/[0-9.]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                    e.preventDefault()
+                  }
+                }}
+                onPaste={handleAmountPaste}
                 className="form-input"
                 required
               />

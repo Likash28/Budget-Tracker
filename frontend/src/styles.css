@@ -1637,6 +1637,15 @@ th,td { padding:.5rem; border-bottom:1px solid var(--border-color); }
   font-size: 1.1rem;
 }
 
+.transaction-amount.earnings {
+  color: #10b981;
+}
+
+.transaction-amount.spendings {
+  color: #ef4444;
+}
+
+/* Legacy support for old class names */
 .transaction-amount.income {
   color: #10b981;
 }
@@ -2251,6 +2260,15 @@ th,td { padding:.5rem; border-bottom:1px solid var(--border-color); }
   font-weight: 700;
 }
 
+.table-cell.amount.earnings {
+  color: #10b981;
+}
+
+.table-cell.amount.spendings {
+  color: #ef4444;
+}
+
+/* Legacy support for old class names */
 .table-cell.amount.income {
   color: #10b981;
 }
@@ -2271,6 +2289,19 @@ th,td { padding:.5rem; border-bottom:1px solid var(--border-color); }
   letter-spacing: 0.5px;
 }
 
+.type-badge.earnings {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.type-badge.spendings {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Legacy support for old class names */
 .type-badge.income {
   background: rgba(16, 185, 129, 0.2);
   color: #10b981;
@@ -4320,4 +4351,51 @@ th,td { padding:.5rem; border-bottom:1px solid var(--border-color); }
 .retry-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Amount Input Validation Styles */
+.amount-input-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  animation: shake 0.3s ease-in-out;
+}
+
+.amount-input-error::before {
+  content: "⚠️";
+  font-size: 0.75rem;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Enhanced form input validation */
+.form-input[data-invalid="true"] {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+  animation: shake 0.3s ease-in-out;
+}
+
+.form-input[data-valid="true"] {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Amount input specific styling */
+input[type="text"][placeholder*="amount" i],
+input[type="text"][placeholder*="limit" i] {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  text-align: right;
+  font-weight: 500;
+}
+
+input[type="text"][placeholder*="amount" i]:focus,
+input[type="text"][placeholder*="limit" i]:focus {
+  background: rgba(255, 255, 255, 0.08);
 }

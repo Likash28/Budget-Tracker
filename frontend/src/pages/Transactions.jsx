@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import api from '../services/api.js'
 import { useNavigate } from 'react-router-dom'
+import { handleAmountChange, isValidAmount, handleAmountPaste } from '../utils/inputValidation.js'
 
 export default function Transactions(){
   const [items, setItems] = useState([])
-  const [form, setForm] = useState({ type:'expense', amount:'', category:'Food', date:new Date().toISOString().slice(0,10), description:'' })
+  const [form, setForm] = useState({ type:'spendings', amount:'', category:'Food', date:new Date().toISOString().slice(0,10), description:'' })
   const [filters, setFilters] = useState({})
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
@@ -49,6 +50,12 @@ export default function Transactions(){
     e.preventDefault()
     if (!form.amount || !form.description) return
     
+    // Validate amount before submission
+    if (!isValidAmount(form.amount)) {
+      alert('Please enter a valid amount (positive number)')
+      return
+    }
+    
     setSubmitting(true)
     try {
       const payload = { ...form, amount: Number(form.amount), date: new Date(form.date).toISOString() }
@@ -71,16 +78,16 @@ export default function Transactions(){
     }).format(amount)
   }
 
-  const getTotalIncome = () => {
-    return items.filter(item => item.type === 'income').reduce((sum, item) => sum + item.amount, 0)
+  const getTotalEarnings = () => {
+    return items.filter(item => item.type === 'earnings').reduce((sum, item) => sum + item.amount, 0)
   }
 
-  const getTotalExpense = () => {
-    return items.filter(item => item.type === 'expense').reduce((sum, item) => sum + item.amount, 0)
+  const getTotalSpendings = () => {
+    return items.filter(item => item.type === 'spendings').reduce((sum, item) => sum + item.amount, 0)
   }
 
   const getNetAmount = () => {
-    return getTotalIncome() - getTotalExpense()
+    return getTotalEarnings() - getTotalSpendings()
   }
 
   if (loading) {
@@ -101,7 +108,7 @@ export default function Transactions(){
         <div className="transactions-header">
           <div className="header-info">
             <h1>Transaction Management</h1>
-            <p>Track your income and expenses with detailed insights</p>
+            <p>Track your earnings and spendings with detailed insights</p>
           </div>
           <div className="summary-cards">
             <div className="summary-card income">
@@ -111,8 +118,8 @@ export default function Transactions(){
                 </svg>
               </div>
               <div className="card-content">
-                <h3>Total Income</h3>
-                <p className="amount">{formatCurrency(getTotalIncome())}</p>
+                <h3>Total Earnings</h3>
+                <p className="amount">{formatCurrency(getTotalEarnings())}</p>
               </div>
             </div>
             <div className="summary-card expense">
@@ -122,8 +129,8 @@ export default function Transactions(){
                 </svg>
               </div>
               <div className="card-content">
-                <h3>Total Expenses</h3>
-                <p className="amount">{formatCurrency(getTotalExpense())}</p>
+                <h3>Total Spendings</h3>
+                <p className="amount">{formatCurrency(getTotalSpendings())}</p>
               </div>
             </div>
             <div className="summary-card net">
@@ -146,7 +153,7 @@ export default function Transactions(){
         <div className="add-transaction-section">
           <div className="section-header">
             <h2>Add New Transaction</h2>
-            <p>Record your income or expense</p>
+            <p>Record your earnings or spendings</p>
           </div>
           <form onSubmit={add} className="transaction-form">
             <div className="form-row">
@@ -158,18 +165,25 @@ export default function Transactions(){
                   onChange={e=>setForm({...form, type:e.target.value})}
                   className="form-select"
                 >
-                  <option value="expense">Expense</option>
-                  <option value="income">Income</option>
+                  <option value="spendings">Spendings</option>
+                  <option value="earnings">Earnings</option>
                 </select>
               </div>
               <div className="form-group">
                 <label htmlFor="amount">Amount</label>
                 <input 
                   id="amount"
-                  type="number" 
+                  type="text" 
                   placeholder="Enter amount" 
                   value={form.amount} 
-                  onChange={e=>setForm({...form, amount:e.target.value})}
+                  onChange={e => handleAmountChange(e, setForm, 'amount', form)}
+                  onKeyPress={e => {
+                    // Prevent non-numeric characters except decimal point
+                    if (!/[0-9.]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                      e.preventDefault()
+                    }
+                  }}
+                  onPaste={handleAmountPaste}
                   className="form-input"
                   required
                 />
@@ -248,8 +262,8 @@ export default function Transactions(){
                 className="filter-select"
               >
                 <option value="">All Types</option>
-                <option value="income">Income</option>
-                <option value="expense">Expense</option>
+                <option value="earnings">Earnings</option>
+                <option value="spendings">Spendings</option>
               </select>
             </div>
           </div>
@@ -276,7 +290,7 @@ export default function Transactions(){
                       </div>
                       <div className="table-cell type">
                         <span className={`type-badge ${transaction.type}`}>
-                          {transaction.type === 'income' ? (
+                          {transaction.type === 'earnings' ? (
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
                             </svg>
@@ -285,7 +299,7 @@ export default function Transactions(){
                               <path d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20ZM12 6C9.79 6 8 7.79 8 10S9.79 14 12 14 16 12.21 16 10 14.21 6 12 6ZM12 12C10.9 12 10 11.1 10 10S10.9 8 12 8 14 8.9 14 10 13.1 12 12 12Z" fill="currentColor"/>
                             </svg>
                           )}
-                          {transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}
+                          {transaction.type === 'earnings' ? 'Earnings' : 'Spendings'}
                         </span>
                       </div>
                       <div className="table-cell category">
@@ -295,7 +309,7 @@ export default function Transactions(){
                         {transaction.description || '-'}
                       </div>
                       <div className={`table-cell amount ${transaction.type}`}>
-                        {transaction.type === 'income' ? '+' : '-'}{formatCurrency(transaction.amount)}
+                        {transaction.type === 'earnings' ? '+' : '-'}{formatCurrency(transaction.amount)}
                       </div>
                     </div>
                   ))}
