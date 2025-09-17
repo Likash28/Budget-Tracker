@@ -7,9 +7,6 @@
     "dev": "cd frontend && npm install && npm run dev",
     "install-frontend": "cd frontend && npm install"
   },
-  "workspaces": [
-    "frontend"
-  ],
   "engines": {
     "node": ">=18.0.0"
   }

@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  command = "npm run build:netlify"
+  command = "rm -rf node_modules package-lock.json && npm install --legacy-peer-deps --force && npx vite build"
   publish = "dist"
 
 [build.environment]
