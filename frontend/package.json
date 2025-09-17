@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:netlify": "rm -rf node_modules package-lock.json && npm install --legacy-peer-deps && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -19,6 +20,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^5.4.2"
+    "vite": "^4.5.3"
   }
 }
