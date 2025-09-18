@@ -17,9 +17,9 @@ app = FastAPI(
 # CORS middleware - Updated for Railway deployment
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Add your frontend ports
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+    allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"]
 )
@@ -36,7 +36,7 @@ async def options_handler(full_path: str):
         status_code=200,
         headers={
             "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, PATCH",
+            "Access-Control-Allow-Methods": "*",
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
         }
