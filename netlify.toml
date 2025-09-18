@@ -9,6 +9,8 @@
   NPM_CONFIG_FUND = "false"
   NPM_CONFIG_AUDIT = "false"
   SECRETS_SCAN_ENABLED = "false"
+  # Set your deployed backend URL here
+  VITE_API_URL = "https://your-backend-url.railway.app/api"
 
 # Disable secrets scanning to prevent false positives
 [build.processing]

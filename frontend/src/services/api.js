@@ -1,9 +1,12 @@
 import axios from 'axios'
 
-console.log('API Base URL:', 'http://localhost:8000/api')
+// Use environment variable for API URL, fallback to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+
+console.log('API Base URL:', API_BASE_URL)
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api'
+  baseURL: API_BASE_URL
 })
 
 export function setToken(token){
