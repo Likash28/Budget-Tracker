@@ -9,8 +9,14 @@
   NPM_CONFIG_FUND = "false"
   NPM_CONFIG_AUDIT = "false"
 
+# Configure secrets scanning to ignore common false positives
 [build.processing]
   skip_processing = false
+
+[build.processing.secrets]
+  enabled = true
+  omit_paths = ["node_modules/**", "dist/**", "build/**"]
+  omit_keys = ["port", "host", "user", "dbname"]
 
 [build.processing.css]
   bundle = true
