@@ -14,19 +14,39 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS middleware
+# CORS middleware - Updated for Railway deployment
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173", 
+        "https://budget-tracker-likash.netlify.app",
+        "https://*.netlify.app",
+        "https://*.railway.app"
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
+    expose_headers=["*"]
 )
 
 # Health check endpoint
 @app.get("/api/health")
 async def health_check():
     return {"ok": True}
+
+# CORS preflight handler
+@app.options("/{full_path:path}")
+async def options_handler(full_path: str):
+    return JSONResponse(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "https://budget-tracker-likash.netlify.app",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, PATCH",
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Allow-Credentials": "true",
+        }
+    )
 
 # Include routers
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
