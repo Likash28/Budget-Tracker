@@ -17,13 +17,7 @@ app = FastAPI(
 # CORS middleware - Updated for Railway deployment
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:5173", 
-        "https://budget-tracker-likash.netlify.app",
-        "https://*.netlify.app",
-        "https://*.railway.app"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
@@ -41,7 +35,7 @@ async def options_handler(full_path: str):
     return JSONResponse(
         status_code=200,
         headers={
-            "Access-Control-Allow-Origin": "https://budget-tracker-likash.netlify.app",
+            "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, PATCH",
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
