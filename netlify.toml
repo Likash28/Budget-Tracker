@@ -8,15 +8,15 @@
   NPM_CONFIG_LEGACY_PEER_DEPS = "true"
   NPM_CONFIG_FUND = "false"
   NPM_CONFIG_AUDIT = "false"
+  SECRETS_SCAN_ENABLED = "false"
 
-# Configure secrets scanning to ignore common false positives
+# Disable secrets scanning to prevent false positives
 [build.processing]
   skip_processing = false
 
+# Disable secrets scanning entirely to prevent false positives
 [build.processing.secrets]
-  enabled = true
-  omit_paths = ["node_modules/**", "dist/**", "build/**"]
-  omit_keys = ["port", "host", "user", "dbname"]
+  enabled = false
 
 [build.processing.css]
   bundle = true

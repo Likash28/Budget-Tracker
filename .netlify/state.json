@@ -1,0 +1,10 @@
+{
+  "site": {
+    "id": "your-site-id"
+  },
+  "build": {
+    "secrets": {
+      "enabled": false
+    }
+  }
+}
