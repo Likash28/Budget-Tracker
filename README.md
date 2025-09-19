@@ -199,7 +199,7 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Set environment variables
-export DATABASE_URL="postgresql://user:password@localhost:5432/budget_tracker"
+export DATABASE_URL="YOUR_URL
 export JWT_SECRET="your-super-secret-jwt-key"
 export JWT_EXPIRE_DAYS=7
 
@@ -218,7 +218,7 @@ cd frontend
 npm install
 
 # Set environment variables
-export VITE_API_URL="http://localhost:8000/api"
+export VITE_API_URL="https://budget-tracker-1-haxa.onrender.com/"
 
 # Start development server
 npm run dev
@@ -346,7 +346,7 @@ The application features a sophisticated expense splitting system that handles:
    - Publish Directory: `dist`
 3. **Environment Variables**:
    ```
-   VITE_API_URL=https://your-backend-url.railway.app/api
+   VITE_API_URL=https://your-backend-url
    ```
 4. **Deploy**: Automatic deployment on git push
 
@@ -355,7 +355,7 @@ The application features a sophisticated expense splitting system that handles:
 2. **Configure Service**:
    - Root Directory: `backend`
    - Build Command: `pip install -r requirements.txt`
-   - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - Start Command: `uvicorn app.main:app`
 3. **Environment Variables**:
    ```
    DATABASE_URL=postgresql://user:password@host:port/database
@@ -534,62 +534,16 @@ python scripts/test_connection.py
 
 ---
 
-## 🏆 **Achievements & Recognition**
-
-- **⭐ GitHub Stars**: 100+ stars
-- **🍴 Forks**: 25+ forks
-- **👥 Contributors**: 5+ contributors
-- **📈 Downloads**: 1,000+ downloads
-- **🌍 Users**: 500+ active users
-
----
-
 ## 📞 **Support & Community**
 
 ### **Get Help**
 - **GitHub Issues**: [Report bugs or request features](https://github.com/yourusername/budget-tracker-fastapi/issues)
 - **Discussions**: [Community discussions](https://github.com/yourusername/budget-tracker-fastapi/discussions)
-- **Email**: support@budgettracker.com
-- **Discord**: [Join our community](https://discord.gg/budgettracker)
-
-### **Stay Updated**
-- **Newsletter**: Subscribe for updates
-- **Twitter**: [@BudgetTrackerApp](https://twitter.com/BudgetTrackerApp)
-- **LinkedIn**: [Budget Tracker](https://linkedin.com/company/budget-tracker)
+- **Email**: likashgunisetti@gmail.com
 
 ---
 
-## 📄 **License**
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2024 Budget Tracker
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-
----
-
-## 🙏 **Acknowledgments**
+## 🙏 **Stack Acknowledgments**
 
 - **FastAPI Team** - For the amazing web framework
 - **React Team** - For the powerful frontend library
@@ -669,10 +623,6 @@ Ready to take control of your finances? Get started with Budget Tracker today!
 <div align="center">
 
 **Made with ❤️ by the Budget Tracker Team**
-
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername/budget-tracker-fastapi)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/yourusername)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/yourusername)
 
 **⭐ Star this repository if you found it helpful!**
 
